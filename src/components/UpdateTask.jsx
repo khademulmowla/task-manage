@@ -8,22 +8,19 @@ const UpdateTask = () => {
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const { id } = useParams()
-    const [tasks, setTasks] = useState([]);
+    const [task, setTask] = useState([]);
     useEffect(() => {
-        const fetchTask = async () => {
+        const fetchTasks = async () => {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_API_URL}/all-task/${id}`);
-                setTasks([response.data]); // Set the specific task data
+                setTask(response.data);
             } catch (err) {
-                console.error('Error fetching task:', err);
+                console.error('Error fetching tasks:', err);
             }
         };
 
-        if (id) {
-            fetchTask();
-        }
+        fetchTasks();
     }, [id]);
-
     const handleSubmit = async e => {
         e.preventDefault()
         const form = e.target;
@@ -38,10 +35,11 @@ const UpdateTask = () => {
         const formData = { title, category, name, email, timestamp, status: category }
         console.log(formData)
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/update-task/${id}`, formData)
+            await axios.put(`${import.meta.env.VITE_API_URL}/update/${id}`, formData)
             navigate('/my-task')
             toast.success('Data updated successfully')
         }
+
         catch (err) {
             console.log(err)
             toast.error(err.message)
@@ -60,7 +58,7 @@ const UpdateTask = () => {
                         type="text"
                         id="artifactName"
                         name="title"
-                        defaultValue={tasks.title}
+                        defaultValue={task.title}
                         required
                         placeholder="Enter Task Title"
                         className="w-full px-3 py-2 border  rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -73,7 +71,7 @@ const UpdateTask = () => {
                     <select
                         id="artifactType"
                         name="category"
-                        defaultValue={tasks.category}
+                        defaultValue={task.category}
                         className="w-full px-3 py-2 border  text-black border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     >
                         <option value="">Select a type</option>

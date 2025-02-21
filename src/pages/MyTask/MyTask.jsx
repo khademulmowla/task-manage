@@ -54,7 +54,7 @@ const MyTask = () => {
                             >
                                 Delete
                             </button>
-                            <Link to={`/update-task/${task._id}`}>
+                            <Link to={`/update/${task._id}`}>
                                 <button className="btn btn-sm bg-green-800 text-white hover:bg-yellow-600">Update</button>
                             </Link>
                         </div>
