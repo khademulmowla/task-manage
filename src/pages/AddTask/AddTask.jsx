@@ -24,6 +24,7 @@ const AddTask = () => {
             await axios.post(`${import.meta.env.VITE_API_URL}/add-task`, formData)
             form.reset()
             toast.success('Data added successfully')
+            navigate('/my-task')
         }
         catch (err) {
             console.log(err)
@@ -93,7 +94,7 @@ const AddTask = () => {
                 <div className="text-center">
                     <button
                         type="submit"
-                        className="w-full sm:w-auto px-6 py-2  text-white font-medium rounded-md shadow-sm hover:bg-blue-900 bg-[#ac9a1a] focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="w-full sm:w-auto px-6 py-2 font-medium rounded-md shadow-sm bg-gray-500 hover:bg-gray-600 text-base-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     >
                         Add Task
                     </button>

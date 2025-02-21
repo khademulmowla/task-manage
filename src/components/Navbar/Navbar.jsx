@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaHome, FaList, FaPlus, FaUser, FaHeart, FaSignOutAlt, FaInfo } from 'react-icons/fa';
+import { FaHome, FaList, FaPlus, FaUser, FaSignOutAlt, } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
+import { MdAddTask } from 'react-icons/md';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className='navbar bg-[#ac9a1a] text-white shadow-sm container px-4 mx-auto'>
+        <div className='navbar bg-gray-400 text-white shadow-sm container px-4 mx-auto'>
             {/* Left side - Mobile Dropdown */}
             <div className="flex-1 lg:hidden flex items-center">
                 <div className="dropdown">
@@ -37,7 +38,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-[#ac9a1a] rounded-box z-[1] mt-3 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-gray-400 rounded-box z-[1] mt-3 p-2 shadow">
                         <li>
                             <Link to='/'><FaHome className="inline mr-2" />Home</Link>
                         </li>
@@ -51,7 +52,7 @@ const Navbar = () => {
                                     <Link to='/all-task'><FaList className="inline mr-2" />All Task</Link>
                                 </li>
                                 <li>
-                                    <Link to='/my-task'><FaUser className="inline" />My Task</Link>
+                                    <Link to='/my-task'><MdAddTask className="inline" />My Task</Link>
                                 </li>
 
                             </>
@@ -63,10 +64,6 @@ const Navbar = () => {
                         )}
                         {user && (
                             <>
-                                <li>
-                                    <Link to='/liked-artifacts'><FaHeart className="inline mr-2" />Liked Artifacts</Link>
-                                </li>
-
                                 <li>
                                     <button
                                         onClick={handleLogOut}
@@ -84,7 +81,7 @@ const Navbar = () => {
             <div className='lg:flex-1 lg:pl-2 flex justify-end lg:justify-start'>
                 <Link to='/' className='flex gap-2 items-center'>
                     <h1>TASK</h1>
-                    <span className='font-bold'>Artifacts</span>
+                    <span className='font-bold'>Management</span>
                 </Link>
             </div>
 
@@ -105,7 +102,7 @@ const Navbar = () => {
                                 <Link to='/all-task'><FaList className="inline mr-2" />All Task</Link>
                             </li>
                             <li>
-                                <Link to='/my-task'><FaUser className="inline" />My Task</Link>
+                                <Link to='/my-task'><MdAddTask className="inline" />My Task</Link>
                             </li>
                         </>
                     )}
@@ -135,16 +132,12 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#ac9a1a] rounded-box w-52'
+                            className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-400 rounded-box w-52'
                         >
-                            <li>
-                                <Link to='/liked-artifacts'><FaHeart className="inline" />Liked Artifacts</Link>
-                            </li>
-
                             <li className='mt-2'>
                                 <button
                                     onClick={handleLogOut}
-                                    className='bg-gray-800 hover:bg-gray-500 block text-center'
+                                    className='bg-gray-700 hover:bg-gray-500 block text-center'
                                 >
                                     <FaSignOutAlt className="inline mr-2" />Logout
                                 </button>
