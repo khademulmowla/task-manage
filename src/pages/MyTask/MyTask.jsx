@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../providers/AuthProvider';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const MyTask = () => {
     const { user } = useContext(AuthContext);
@@ -12,6 +13,7 @@ const MyTask = () => {
         "In Progress": [],
         "Done": [],
     });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (user?.email) {
@@ -28,8 +30,10 @@ const MyTask = () => {
                 updatedTasks[category] = response.data.filter(task => task.email === user.email);
             }
             setTasks(updatedTasks);
+            setLoading(false);
         } catch (err) {
             console.error('Error fetching tasks:', err);
+            setLoading(false);
         }
     };
 
@@ -65,6 +69,10 @@ const MyTask = () => {
             console.error('Error updating task category:', error);
         }
     };
+
+    if (loading) {
+        return <LoadingSpinner />;
+    }
 
     return (
         <div className="max-w-4xl mx-auto my-6 p-6 bg-gray-100 shadow-lg rounded-lg">

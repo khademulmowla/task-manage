@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const AllTask = () => {
     const [tasks, setTasks] = useState({
@@ -7,6 +8,7 @@ const AllTask = () => {
         "In Progress": [],
         "Done": [],
     });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -18,12 +20,17 @@ const AllTask = () => {
                     updatedTasks[category] = response.data;
                 }
                 setTasks(updatedTasks);
+                setLoading(false);
             } catch (err) {
                 console.error("Error fetching tasks:", err);
+                setLoading(false);
             }
         };
         fetchTasks();
     }, []);
+    if (loading) {
+        return <LoadingSpinner />;
+    }
 
     return (
         <div className="max-w-4xl mx-auto my-6 p-6 bg-gray-100 shadow-lg rounded-lg">
