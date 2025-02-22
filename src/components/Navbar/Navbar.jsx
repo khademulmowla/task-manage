@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaList, FaPlus, FaUser, FaSignOutAlt, } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
 import { MdAddTask } from 'react-icons/md';
+import logo from '../../assets/images/logo.png'
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -19,7 +20,6 @@ const Navbar = () => {
 
     return (
         <div className='navbar bg-gray-400 text-white shadow-sm container px-4 mx-auto'>
-            {/* Left side - Mobile Dropdown */}
             <div className="flex-1 lg:hidden flex items-center">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost text-white">
@@ -42,7 +42,6 @@ const Navbar = () => {
                         <li>
                             <Link to='/'><FaHome className="inline mr-2" />Home</Link>
                         </li>
-                        {/* Conditionally render "All Task" and "Add Task" for logged-in users */}
                         {user && (
                             <>
                                 <li>
@@ -52,7 +51,7 @@ const Navbar = () => {
                                     <Link to='/all-task'><FaList className="inline mr-2" />All Task</Link>
                                 </li>
                                 <li>
-                                    <Link to='/my-task'><MdAddTask className="inline" />My Task</Link>
+                                    <Link to='/my-task'><MdAddTask className="inline" />Manage Task</Link>
                                 </li>
 
                             </>
@@ -77,21 +76,19 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Right side - Logo for Mobile */}
             <div className='lg:flex-1 lg:pl-2 flex justify-end lg:justify-start'>
                 <Link to='/' className='flex gap-2 items-center'>
+                    <img className="w-auto h-7" src={logo} alt="" />
                     <h1>TASK</h1>
                     <span className='font-bold'>Management</span>
                 </Link>
             </div>
 
-            {/* Right side - Navigation and User Dropdown for Desktop */}
             <div className='flex-none pr-2 hidden lg:flex'>
                 <ul className='menu menu-horizontal px-1'>
                     <li>
                         <Link to='/'><FaHome className="inline" />Home</Link>
                     </li>
-                    {/* Conditionally render "All Task" and "Add Task" for logged-in users */}
                     {user && (
                         <>
 
@@ -102,7 +99,7 @@ const Navbar = () => {
                                 <Link to='/all-task'><FaList className="inline mr-2" />All Task</Link>
                             </li>
                             <li>
-                                <Link to='/my-task'><MdAddTask className="inline" />My Task</Link>
+                                <Link to='/my-task'><MdAddTask className="inline" />Manage Task</Link>
                             </li>
                         </>
                     )}
@@ -112,9 +109,6 @@ const Navbar = () => {
                         </li>
                     )}
                 </ul>
-
-                {/* Dark Mode Toggle for Desktop */}
-
                 {user && (
                     <div className='dropdown dropdown-end z-50'>
                         <div

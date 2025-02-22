@@ -31,8 +31,8 @@ const UpdateTask = () => {
         e.preventDefault();
 
         const updatedTask = {
-            ...task, // Include existing data
-            timestamp: new Date().toISOString(), // Update timestamp
+            ...task,
+            timestamp: new Date().toISOString(),
         };
 
         try {

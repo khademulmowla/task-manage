@@ -15,7 +15,6 @@ const AddTask = () => {
         const name = form.userName.value;
         const email = form.userEmail.value;
 
-        // Generate a timestamp
         const timestamp = new Date().toISOString();
 
         const formData = { title, category, name, email, timestamp, status: category }
