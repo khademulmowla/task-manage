@@ -1,10 +1,10 @@
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import logo from '../../assets/images/logo.png'
+import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
+import logo from '../../assets/images/logo.png';
 
 const Footer = () => {
     return (
         <div>
-            <footer className="footer bg-gray-500 text-white px-8 py-8">
+            <footer className="footer flex justify-between bg-gray-500 text-white px-8 py-8">
                 <aside>
                     <img className='w-auto h-7 bg-base-200' src={logo} alt='' />
                     <p>
@@ -28,7 +28,6 @@ const Footer = () => {
                             <FaLinkedin />
                         </a>
                     </div>
-
                 </nav>
             </footer>
             <footer className="footer footer-center bg-gray-300 text-base-content p-4">
@@ -40,4 +39,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default Footer;  
